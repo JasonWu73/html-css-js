@@ -1,3 +1,26 @@
+// Fetch API
+getCountryDataFetchWay()
+
+function getCountryDataFetchWay() {
+  fetch(getCountryDataUrlByName('china'))
+  .then(response => response.json())
+  .then(data => {
+    const country = data?.[0]
+    console.log(country)
+    if (!country) return;
+
+    showCountryInHtml(country)
+
+    // 获取邻国
+    const borderCode = country.borders?.[0]
+    return fetch(getCountryDataUrlByCode(borderCode))
+  })
+  .then(response => response.json())
+  .then(data => showCountryInHtml(data))
+}
+
+/*
+// XMLHttpRequest
 getCountryDataOldWay('china')
 
 // callback hell
@@ -16,6 +39,7 @@ setTimeout(() => {
     }, 1000)
   }, 1000)
 }, 1000)
+*/
 
 function getCountryDataOldWay(countryName) {
   // 获取国家
@@ -86,6 +110,7 @@ function createImgNode(src) {
 function getCountryDataUrlByName(countryName) {
   return `https://restcountries.com/v2/name/${countryName}`
 }
+
 function getCountryDataUrlByCode(countryCode) {
   return `https://restcountries.com/v2/alpha/${countryCode}`
 }
