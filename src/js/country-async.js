@@ -1,25 +1,54 @@
-getCountryDataOldWay('china', () => {
-  drawSeparatorLineInHtml()
-  getCountryDataOldWay('usa')
-})
+getCountryDataOldWay('china')
+
+// callback hell
+setTimeout(() => {
+  console.log('1 秒后')
+  setTimeout(() => {
+    console.log('2 秒后')
+    setTimeout(() => {
+      console.log('3 秒后')
+      setTimeout(() => {
+        console.log('4 秒后')
+        setTimeout(() => {
+          console.log('5 秒后')
+        }, 1000)
+      }, 1000)
+    }, 1000)
+  }, 1000)
+}, 1000)
+
+function getCountryDataOldWay(countryName) {
+  // 获取国家
+  const request = new XMLHttpRequest()
+  request.open('GET', getCountryDataUrlByName(countryName))
+  request.send()
+  request.addEventListener('load', () => {
+    const [country] = JSON.parse(request.responseText)
+    console.log(`${countryName} 数据`, country)
+
+    // 将国家数据显示在页面中
+    showCountryInHtml(country)
+
+    // 获取第一个邻国
+    const borderCode = country.borders?.[0]
+    if (!borderCode) return
+
+    drawSeparatorLineInHtml()
+    const request2 = new XMLHttpRequest()
+    request2.open('GET', getCountryDataUrlByCode(borderCode))
+    request2.send()
+    request2.addEventListener('load', () => {
+      const border = JSON.parse(request2.responseText)
+      console.log(`${borderCode} 数据`, border)
+
+      showCountryInHtml(border)
+    })
+  })
+}
 
 function drawSeparatorLineInHtml() {
   const hrNode = document.createElement('hr')
   document.body.insertAdjacentElement('beforeend', hrNode)
-}
-
-function getCountryDataOldWay(countryName, callback) {
-  const request = new XMLHttpRequest()
-  request.open('GET', getCountryDataUrl(countryName))
-  request.send()
-  request.addEventListener('load', () => {
-    const [china] = JSON.parse(request.responseText)
-    console.log(`${countryName} 数据`, china)
-
-    showCountryInHtml(china)
-
-    if (typeof callback === 'function') callback()
-  })
 }
 
 function showCountryInHtml(countryData) {
@@ -54,6 +83,9 @@ function createImgNode(src) {
   return img
 }
 
-function getCountryDataUrl(countryName) {
+function getCountryDataUrlByName(countryName) {
   return `https://restcountries.com/v2/name/${countryName}`
+}
+function getCountryDataUrlByCode(countryCode) {
+  return `https://restcountries.com/v2/alpha/${countryCode}`
 }
