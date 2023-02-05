@@ -1,22 +1,53 @@
 // Fetch API
-getCountryDataFetchWay()
+createFetchButton()
+
+function createFetchButton() {
+  const buttonEl = document.createElement('button')
+  buttonEl.textContent = '获取数据'
+  buttonEl.addEventListener('click', () => {
+    getCountryDataFetchWay()
+  })
+  const divEl = document.createElement('div')
+  divEl.insertAdjacentElement('beforeend', buttonEl)
+  document.body.insertAdjacentElement('beforeend', divEl)
+}
+
+function fetchJson(url) {
+  return fetch(url)
+  .then(response => {
+    if (!response.ok) return response.json().then(data => {
+      throw new Error(data.message)
+    })
+
+    return response.json()
+  })
+}
 
 function getCountryDataFetchWay() {
-  fetch(getCountryDataUrlByName('china'))
-  .then(response => response.json())
+  // australia
+  fetchJson(getCountryDataUrlByName('china'))
   .then(data => {
     const country = data?.[0]
     console.log(country)
-    if (!country) return;
 
     showCountryInHtml(country)
 
     // 获取邻国
     const borderCode = country.borders?.[0]
-    return fetch(getCountryDataUrlByCode(borderCode))
+    if (!borderCode) throw new Error(`${country.name} 没有邻国`)
+
+    return fetchJson(getCountryDataUrlByCode(borderCode))
   })
-  .then(response => response.json())
   .then(data => showCountryInHtml(data))
+  .catch(error => {
+    console.error(error)
+    renderError(error)
+  })
+}
+
+function renderError(error) {
+  const pEl = createParagraphNode(error)
+  document.body.insertAdjacentElement('afterbegin', pEl)
 }
 
 /*
