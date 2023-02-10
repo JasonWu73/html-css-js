@@ -10,13 +10,17 @@
   box-sizing: border-box;
 }
 
+/* 定义 root 字体为 10px，以便后续 rem 计算 */
+html {
+  font-size: 10px;
+}
+
 body {
   font-family: "JetBrains Mono Web", sans-serif;
   font-weight: 400;
-  font-size: 16px;
   line-height: 1.7;
   color: #777;
-  padding: 30px;
+  padding: 3rem;
 }
 
 .header {
@@ -36,12 +40,12 @@ body {
 
 .logo-box {
   position: absolute;
-  top: 40px;
-  left: 40px;
+  top: 4rem;
+  left: 4rem;
 }
 
 .logo {
-  height: 35px;
+  height: 3.5rem;
 }
 
 .text-box {
@@ -58,9 +62,9 @@ body {
 
 .heading-primary-main {
   display: block;
-  font-size: 60px;
+  font-size: 6rem;
   font-weight: 400;
-  letter-spacing: 35px;
+  letter-spacing: 3.5rem;
 
   animation-name: moveInLeft;
   animation-duration: 1s;
@@ -74,9 +78,9 @@ body {
 
 .heading-primary-subtitle {
   display: block;
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 900;
-  letter-spacing: 14px;
+  letter-spacing: 1.4rem;
 
   /*
   animation-name: moveInRight;
@@ -89,11 +93,11 @@ body {
 @keyframes moveInLeft {
   0% {
     opacity: 0;
-    transform: translateX(-100px);
+    transform: translateX(-10rem);
   }
 
   80% {
-    transform: translateX(10px);
+    transform: translateX(1rem);
   }
 
   100% {
@@ -105,11 +109,11 @@ body {
 @keyframes moveInRight {
   0% {
     opacity: 0;
-    transform: translateX(100px);
+    transform: translateX(10rem);
   }
 
   80% {
-    transform: translateX(-10px);
+    transform: translateX(-1rem);
   }
 
   100% {
