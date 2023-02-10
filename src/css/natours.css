@@ -4,7 +4,9 @@
   src: url("../assets/font/JetBrainsMono-Regular.woff2") format("woff2");
 }
 
-* {
+*,
+*::after,
+*::before {
   margin: 0;
   padding: 0;
   box-sizing: inherit;
