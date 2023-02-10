@@ -10,9 +10,12 @@
   box-sizing: border-box;
 }
 
-/* 定义 root 字体为 10px，以便后续 rem 计算 */
+/*
+定义 root 字体为 10px，以便后续 rem 计算，
+浏览器默认 16 px，使用百分比可优化用户体验（如调整浏览器默认字体大小），10 / 16 = 0.625
+*/
 html {
-  font-size: 10px;
+  font-size: 62.5%;
 }
 
 body {
