@@ -1,14 +1,22 @@
-// var myName = '吴仙杰';
-// console.log(myName);
-// myName = 'Jason Wu';
-// console.log(myName);
+class Human {
+  gender = 'male';
 
-// let myName = '吴仙杰';
-// console.log(myName);
-// myName = 'Jason Wu';
-// console.log(myName);
+  printGender = () => {
+    console.log(this.gender);
+  };
+}
 
-const myName = '吴仙杰';
-console.log(myName);
-myName = 'Jason Wu';
-console.log(myName);
+class Person extends Human {
+  name = name;
+
+  printMyName = () => {
+    console.log(this.name);
+  };
+}
+
+const me = new Person();
+me.name = 'Jason';
+me.gender = 'female';
+me.gender = 'unknown';
+me.printMyName();
+me.printGender();
