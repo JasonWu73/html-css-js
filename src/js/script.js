@@ -1,22 +1,20 @@
-class Human {
-  gender = 'male';
+const nums = [2, 3, 4];
+const newNums = [...nums, 5];
+console.log(newNums);
 
-  printGender = () => {
-    console.log(this.gender);
-  };
-}
+console.log('------------------');
 
-class Person extends Human {
-  name = name;
+const person = {
+  name: 'Jason'
+};
+const newPerson = {
+  ...person,
+  age: 25
+};
 
-  printMyName = () => {
-    console.log(this.name);
-  };
-}
+console.log(newPerson);
 
-const me = new Person();
-me.name = 'Jason';
-me.gender = 'female';
-me.gender = 'unknown';
-me.printMyName();
-me.printGender();
+console.log('------------------');
+
+const filterEvenNum = (...args) => args.filter(num => num % 2 === 0);
+console.log(filterEvenNum(1, 2, 3, 4, 5));
