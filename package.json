@@ -4,7 +4,7 @@
   "description": "``` base/ components/ layout/ pages/ themes/ abstracts/ vendors/ ```",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc /Users/wxj/IdeaProjects/html-css-js/src/ts/app.ts"
   },
   "repository": {
     "type": "git",
