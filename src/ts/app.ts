@@ -1,3 +1,7 @@
+let arr: any[];
+// let arr: string[];
+arr = [1, 2, 'string', false];
+
 // 0, 1, 2
 // enum Role {ADMIN, READ_ONLY}
 
