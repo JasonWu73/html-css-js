@@ -2,20 +2,18 @@
 const person: {
   name: string,
   age: number,
-  hobbies: string[] // array type
+  hobbies: string[], // array type
+  roles: [number, string] // tuple
 } = {
   name: 'Jason Wu',
   age: 25,
-  hobbies: ['Game', 'Coding']
+  hobbies: ['Game', 'Coding'],
+  roles: [2, 'author']
 };
 
-person.hobbies.forEach(hobby => {
-  console.log(hobby.toUpperCase());
-});
+// error
+// person.roles = [1, 'Coder', 'Dev'];
 
-let persons: {name: string, age: number}[];
-persons = [person];
-
-persons.forEach(person => {
-  console.log(person.name)
-});
+person.roles.push('Tester');
+person.roles[1] = 'Admin';
+console.log(person);
