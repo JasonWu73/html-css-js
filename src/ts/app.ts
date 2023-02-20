@@ -1,20 +1,24 @@
-type Combinable = number | string;
-type ConversionDescriptor = 'as-number' | 'as-string';
+let someVal: undefined;
+console.log(someVal);
+someVal = null;
+console.log(someVal);
 
-const combine = (
-  n1: Combinable,
-  n2: Combinable,
-  resultConversion: ConversionDescriptor
-) => {
-  if (typeof n1 === 'number' && typeof n2 === 'number' ||
-    resultConversion === 'as-number') {
-    return +n1 + +n2;
-  }
+printResult(add(1, 1.9));
 
-  return n1.toString() + n2.toString();
-};
+function printResult3(num: number): void {
+  console.log(`Result: ${num}`);
+  return;
+}
 
-console.log(combine(1, 2, 'as-number'));
-console.log(combine('1', '2', 'as-number'));
+function printResult2(num: number): undefined {
+  console.log(`Result: ${num}`);
+  return;
+}
 
-console.log(combine('hello', ' world', 'as-string'));
+function printResult(num: number): void {
+  console.log(`Result: ${num}`);
+}
+
+function add(num1: number, num2: number): number {
+  return num1 + num2;
+}
