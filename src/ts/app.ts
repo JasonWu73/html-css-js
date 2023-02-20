@@ -1,23 +1,11 @@
-let arr: any[];
-// let arr: string[];
-arr = [1, 2, 'string', false];
+const combine = (n1: number | string, n2: number | string) => {
+  if (typeof n1 === 'number' && typeof n2 === 'number') {
+    return n1 + n2;
+  }
 
-// 0, 1, 2
-// enum Role {ADMIN, READ_ONLY}
-
-// enum Role {ADMIN = 10, READ_ONLY = 100}
-
-enum Role {ADMIN = 'admin', READ_ONLY = 100}
-
-const person = {
-  name: 'Jason Wu',
-  age: 25,
-  hobbies: ['Game', 'Coding'],
-  role: Role.ADMIN
+  return n1.toString() + n2.toString();
 };
 
-if (person.role === Role.READ_ONLY) {
-  console.log(`${person.name} is read only!`);
-} else {
-  console.log(`${person.name} can read and write.`);
-}
+console.log(combine(1, 2));
+
+console.log(combine('hello', ' world'));
