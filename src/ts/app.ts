@@ -12,10 +12,14 @@ const add = (
   return sum;
 };
 
-const num1 = 0.1;
+// let num1 = 0.1;
+// let num1: string = 0.1;
+let num1: number;
+num1 = 12;
 const num2 = 0.9;
 const printResult = true;
-const resultPhrase = 'The result is:';
+let resultPhrase = 'The result is:';
+resultPhrase = 0;
 add(num1, num2, printResult, resultPhrase);
 
 console.log('==========')
