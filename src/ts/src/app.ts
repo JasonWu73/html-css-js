@@ -1,4 +1,5 @@
 class Department {
+  static fiscalYear = 2023
   // private readonly id: string
   // private readonly name: string
   protected employees: string[] = []
@@ -9,6 +10,11 @@ class Department {
   ) {
     // this.id = id;
     // this.name = name;
+    // console.log(Department.fiscalYear);
+  }
+
+  static createEmployee(name: string) {
+    return {name};
   }
 
   describe(this: Department): void {
@@ -54,10 +60,8 @@ class ItDepartment extends Department {
   }
 }
 
-const iTDepartment = new ItDepartment('e1', ['Bruce', 'Jack']);
-// iTDepartment.addEmployee('Jason');
-// iTDepartment.addEmployee('Kitty');
+const employee = Department.createEmployee('Jason');
+console.log(employee, Department.fiscalYear);
 
-iTDepartment.mostRecentEmployee = 'Jason';
-iTDepartment.mostRecentEmployee = 'Kitty';
-console.log(iTDepartment.mostRecentEmployee);
+const employee1 = ItDepartment.createEmployee('Bruce');
+console.log(employee1, ItDepartment.fiscalYear);
