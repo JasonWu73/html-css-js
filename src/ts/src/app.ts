@@ -1,18 +1,26 @@
 interface Animal {
-  name: string,
-  sex: string,
-  maxAge: number
+  sex: string;
 
   makeNoise(phrase: string): void
 }
 
-const dog: Animal = {
-  name: 'George',
+class Cat implements Animal {
+
+  constructor(public sex: string) {}
+
+  makeNoise(phrase: string): void {
+    console.log(`Meow: ${phrase}`);
+  }
+}
+
+let cat: Animal;
+
+cat = {
   sex: 'male',
-  maxAge: 20,
   makeNoise(phrase: string) {
-    console.log(`Make Noise: ${phrase}`)
+    console.log(phrase);
   }
 };
 
-dog.makeNoise('woof !!!');
+cat = new Cat('female');
+cat.makeNoise('I am cat queen');
