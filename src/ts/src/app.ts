@@ -1,7 +1,7 @@
 class Department {
   // private readonly id: string
   // private readonly name: string
-  private employees: string[] = []
+  protected employees: string[] = []
 
   constructor(
     private readonly id: string,
@@ -30,11 +30,22 @@ class ItDepartment extends Department {
     super(id, 'IT');
   }
 
-  printAdministratorInformation() {
+  addEmployee(employee: string): void {
+    if (employee === 'Jason') {
+      console.log('Can not add Jason to employee');
+      return;
+    }
+
+    // super.addEmployee(employee);
+    this.employees.push(employee);
+  }
+
+  printAdministratorInformation(): void {
     console.log(this.administrators, this)
   }
 }
 
-const iTDepartment = new ItDepartment('e1', ['Jason', 'Bruce']);
-iTDepartment.describe();
-iTDepartment.printAdministratorInformation();
+const iTDepartment = new ItDepartment('e1', ['Bruce', 'Jack']);
+iTDepartment.addEmployee('Jason');
+iTDepartment.addEmployee('Kitty');
+iTDepartment.printEmployeeInformation();
