@@ -1,1 +1,1 @@
-console.log('typescript watch mode, changed')
+console.log('typescript watch mode, changed, !!!')
