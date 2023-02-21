@@ -4,7 +4,17 @@ class Department {
   constructor(name: string) {
     this.name = name;
   }
+
+  describe(this: Department): void {
+    console.log(`Department: ${this.name}`, this);
+  }
 }
 
-const accountingDepartment = new Department('Accounting');
-console.log(accountingDepartment);
+const accounting = new Department('Accounting');
+accounting.describe();
+
+const copiedAccounting = {
+  name: `Copied ${accounting.name}`,
+  describe: accounting.describe
+};
+copiedAccounting.describe();
