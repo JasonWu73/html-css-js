@@ -4,7 +4,7 @@
   "description": "``` base/ components/ layout/ pages/ themes/ abstracts/ vendors/ ```",
   "main": "index.js",
   "scripts": {
-    "ts watch": "tsc --build --watch src/ts"
+    "ts build": "tsc --build src/ts"
   },
   "repository": {
     "type": "git",
