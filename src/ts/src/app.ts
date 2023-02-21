@@ -1,4 +1,30 @@
-const hobbies = ['Game', 'Coding'];
+// tuple
+const addTwo = (...numbers: [number, number]): number => {
+  return numbers[0] + numbers[1];
+};
+
+console.log(addTwo(1, 2));
+
+const add = (...numbers: number[]): number => {
+  return numbers.reduce((previousValue, currentValue) => {
+    return previousValue + currentValue;
+  }, 0);
+};
+
+const printToConsole = (
+  ...params: (string | number)[]): [string, number] => {
+  // ...params: (string | number)[]): (string | number)[] => {
+  console.log(...params)
+  return ['1000', 1];
+  // return [1, '1000'];
+};
+
+const [
+  stringValue,
+  numberValue] = printToConsole('Hello', 'TypeScript', ':)', 100);
+console.log(stringValue, numberValue);
+
+/* const hobbies = ['Game', 'Coding'];
 const activeHobbies = ['Fitness'];
 
 // hobbies.push(activeHobbies[0]);
@@ -11,7 +37,7 @@ const person = {
 };
 
 const jason = {...person, name: 'Jason'};
-console.log(person);
+console.log(person); */
 
 /*
 const add = (
