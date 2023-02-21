@@ -25,6 +25,7 @@ class Department {
 }
 
 class ItDepartment extends Department {
+  private lastEmployee: string = '';
 
   constructor(id: string, public administrators: string[]) {
     super(id, 'IT');
@@ -36,16 +37,27 @@ class ItDepartment extends Department {
       return;
     }
 
-    // super.addEmployee(employee);
     this.employees.push(employee);
+    this.lastEmployee = employee;
   }
 
-  printAdministratorInformation(): void {
-    console.log(this.administrators, this)
+  get mostRecentEmployee(): string {
+    if (this.lastEmployee) {
+      return this.lastEmployee;
+    }
+
+    throw new Error('Not Found Any Employee');
+  }
+
+  set mostRecentEmployee(employee: string) {
+    this.addEmployee(employee);
   }
 }
 
 const iTDepartment = new ItDepartment('e1', ['Bruce', 'Jack']);
-iTDepartment.addEmployee('Jason');
-iTDepartment.addEmployee('Kitty');
-iTDepartment.printEmployeeInformation();
+// iTDepartment.addEmployee('Jason');
+// iTDepartment.addEmployee('Kitty');
+
+iTDepartment.mostRecentEmployee = 'Jason';
+iTDepartment.mostRecentEmployee = 'Kitty';
+console.log(iTDepartment.mostRecentEmployee);
