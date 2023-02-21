@@ -30,9 +30,22 @@ abstract class Department {
 
 class ItDepartment extends Department {
   private lastEmployee: string = '';
+  private static INSTANCE: ItDepartment;
 
   constructor(id: string, public administrators: string[]) {
     super(id, 'IT');
+  }
+
+  static getInstance(): ItDepartment {
+    if (this.INSTANCE) {
+      return this.INSTANCE;
+    }
+
+    this.INSTANCE = new ItDepartment(
+      'default_generated_id',
+      ['Jason', 'Bruce']
+    );
+    return this.INSTANCE;
   }
 
   describe() {
@@ -62,6 +75,11 @@ class ItDepartment extends Department {
   }
 }
 
-const employee = new ItDepartment('e1', ['Jason']);
-employee.describe();
-console.log(employee);
+// const departmentOne = new ItDepartment("e1", ['Kitty']);
+// const departmentTwo = new ItDepartment("e1", ['Kitty']);
+
+const departmentOne = ItDepartment.getInstance();
+const departmentTwo = ItDepartment.getInstance();
+
+console.log(departmentOne === departmentTwo);
+console.log(departmentOne);
