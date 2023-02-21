@@ -1,3 +1,12 @@
-let userInput: unknown;
-let username: string;
-username = userInput + '';
+genError(500, 'deliberate throw error')
+console.log('finish')
+
+const test = (a: string): void => {
+
+};
+
+function genError(
+  code: number,
+  msg: string): never {
+  throw {code, msg};
+}
