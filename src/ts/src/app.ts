@@ -1,3 +1,19 @@
+const hobbies = ['Game', 'Coding'];
+const activeHobbies = ['Fitness'];
+
+// hobbies.push(activeHobbies[0]);
+hobbies.push(...activeHobbies);
+console.log(hobbies);
+
+const person = {
+  name: 'person',
+  age: 25
+};
+
+const jason = {...person, name: 'Jason'};
+console.log(person);
+
+/*
 const add = (
   numberOne: number,
   numberTwo: number = 100): number => numberOne + numberTwo;
@@ -13,6 +29,7 @@ if (buttonElement) {
 }
 
 console.log(add(1));
+*/
 
 /*
 const age = 25;
