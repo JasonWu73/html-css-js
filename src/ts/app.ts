@@ -1,3 +1,7 @@
-const username = 'Jason';
-let age = 10;
-console.log(username, age);
+const printMessage = () => {
+  const map = new Map();
+  map.set('name', 'Jason');
+  console.log(map, map.get('name'));
+}
+
+printMessage();
