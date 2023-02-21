@@ -4,8 +4,8 @@ class Department {
   private employees: string[] = []
 
   constructor(
-    private id: string,
-    public name: string
+    private readonly id: string,
+    public readonly name: string
   ) {
     // this.id = id;
     // this.name = name;
@@ -27,6 +27,7 @@ class Department {
 const accounting = new Department('e1', 'Accounting');
 // accounting.id
 accounting.describe();
+console.log('finished')
 
-accounting.name = 'Jack';
-accounting.describe()
+// accounting.name = 'Jack';
+// accounting.describe()
