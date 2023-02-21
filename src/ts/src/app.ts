@@ -1,4 +1,21 @@
-// tuple
+const resultErrorArray = [100, new Error('Error'), 'one', 'two'];
+const [result, error, ...remaining] = resultErrorArray;
+console.log(result);
+console.log(error);
+console.log(remaining);
+
+const person = {
+  username: 'Jason',
+  age: 25
+};
+
+const username = 'Bruce';
+const {age, username: myName} = person;
+console.log(age);
+console.log('username', username);
+console.log('myName', myName);
+
+/*
 const addTwo = (...numbers: [number, number]): number => {
   return numbers[0] + numbers[1];
 };
@@ -23,6 +40,7 @@ const [
   stringValue,
   numberValue] = printToConsole('Hello', 'TypeScript', ':)', 100);
 console.log(stringValue, numberValue);
+*/
 
 /* const hobbies = ['Game', 'Coding'];
 const activeHobbies = ['Fitness'];
