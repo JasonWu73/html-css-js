@@ -1,8 +1,5 @@
-// it is a comment
-const printMessage = () => {
-  const map = new Map();
-  map.set('name', 'Jason');
-  console.log(map, map.get('name'));
-}
+const buttonElement = document.querySelector('button');
 
-printMessage();
+buttonElement.addEventListener('click', () => {
+  console.log('ss');
+});
