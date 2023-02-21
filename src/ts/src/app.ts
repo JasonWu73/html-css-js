@@ -1,5 +1,18 @@
-const buttonElement = document.querySelector('button');
+const buttonElement = document.querySelector('button')!;
 
-buttonElement.addEventListener('click', () => {
-  console.log('ss');
-});
+const clickHandler = (message: string) => {
+  console.log(`Clicked: ${message}`)
+};
+
+buttonElement.addEventListener('click', clickHandler.bind(null, 'data'));
+
+let logged;
+
+const consoleLog = (data: string) => {
+  console.log(data)
+  logged = true;
+  logged = 'Jason';
+  console.log(logged);
+}
+
+consoleLog('the data');
