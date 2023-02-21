@@ -49,7 +49,8 @@
     // "declaration": true,                              /* Generate .d.ts files from TypeScript and JavaScript files in your project. */
     // "declarationMap": true,                           /* Create sourcemaps for d.ts files. */
     // "emitDeclarationOnly": true,                      /* Only output d.ts files and not JavaScript files. */
-    // "sourceMap": true,                                /* Create source map files for emitted JavaScript files. */
+    "sourceMap": true,
+    /* Create source map files for emitted JavaScript files. */
     // "outFile": "./",                                  /* Specify a file that bundles all outputs into one JavaScript file. If 'declaration' is true, also designates a file that bundles all .d.ts output. */
     // "outDir": "./",                                   /* Specify an output folder for all emitted files. */
     // "removeComments": true,                           /* Disable emitting comments. */
@@ -110,10 +111,9 @@
     // default exclude node_modules
     "library"
   ]
-  // 强制仅编译特定的文件，默认为当前目录及子目录中的 `.ts` 文件
-  // `include` 可指定目录，但 `files` 仅可指定文件
   /*"include": [
     "app.ts"
   ]*/
-  //  "files": [],
+  //  "files": []
+  /* 强制仅编译特定的文件，默认为当前目录及子目录中的 `.ts` 文件。`include` 可指定目录，但 `files` 仅可指定文件。 */
 }

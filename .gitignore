@@ -10,3 +10,4 @@ node_modules/
 
 # TypeScript
 src/ts/*.js
+src/ts/*.js.map
