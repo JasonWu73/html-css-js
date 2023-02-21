@@ -24,10 +24,17 @@ class Department {
   }
 }
 
-const accounting = new Department('e1', 'Accounting');
-// accounting.id
-accounting.describe();
-console.log('finished')
+class ItDepartment extends Department {
 
-// accounting.name = 'Jack';
-// accounting.describe()
+  constructor(id: string, public administrators: string[]) {
+    super(id, 'IT');
+  }
+
+  printAdministratorInformation() {
+    console.log(this.administrators, this)
+  }
+}
+
+const iTDepartment = new ItDepartment('e1', ['Jason', 'Bruce']);
+iTDepartment.describe();
+iTDepartment.printAdministratorInformation();
