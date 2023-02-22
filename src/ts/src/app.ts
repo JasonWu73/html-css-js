@@ -4,25 +4,31 @@ interface Animal {
   makeNoise(phrase: string): void
 }
 
-class Cat implements Animal {
+interface Named {
+  readonly name: string;
+}
 
-  constructor(public sex: string) {}
+interface Person extends Animal, Named {
+  phoneNumber: string;
+}
+
+class User implements Person {
+
+  constructor(
+    public name: string,
+    public sex: string,
+    public phoneNumber: string
+  ) {
+  }
 
   makeNoise(phrase: string): void {
-    console.log(`Meow: ${phrase}`);
+    console.log(`I'm ${this.name} (${this.sex}): ${phrase}`);
   }
 }
 
-let cat: Animal;
+const user = new User('Jason', 'male', '18157186682');
+user.makeNoise('Hello');
+console.log(user);
 
-cat = {
-  sex: 'male',
-  makeNoise(phrase: string) {
-    console.log(phrase);
-  }
-};
-
-cat.sex = 'female';
-
-cat = new Cat('female');
-cat.makeNoise('I am cat queen');
+user.name = 'Jack';
+console.log(user);
