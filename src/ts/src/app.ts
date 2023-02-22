@@ -1,4 +1,25 @@
+// generic constraints
+function merge<T extends object, U extends object>(
+  objectOne: T,
+  objectTwo: U
+): T & U {
+  return Object.assign({}, objectOne, objectTwo);
+}
+
+// const merged = merge(
+//   {name: 'Jason', hobbies: ['Coding']},
+//   {age: 25}
+// );
+const merged = merge(
+  {name: 'Jason', hobbies: ['Coding']},
+  25
+);
+console.log('merged:', merged);
+
+// ========================================
+
 // create generic function
+/*
 function merge<T, U>(objectOne: T, objectTwo: U): T & U {
   return Object.assign({}, objectOne, objectTwo);
 }
@@ -14,6 +35,7 @@ const merged = merge(user, details);
 console.log('merged:', merged);
 
 console.log('merged.hobbies:', merged.hobbies);
+*/
 
 // ========================================
 
