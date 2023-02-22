@@ -1,8 +1,10 @@
-// type casting
-// const paragraphElement = <HTMLInputElement>
-//   document.querySelector('.message-output')!;
+// index properties
+interface ErrorContainer {
+  [property: string]: string;
+}
 
-const paragraphElement =
-  document.querySelector('.message-output')! as HTMLInputElement;
-
-paragraphElement.value = 'Hi there!';
+const errorBag: ErrorContainer = {
+  'email': 'Invalid Email Address',
+  1: 'Fatal'
+};
+console.log(errorBag);
