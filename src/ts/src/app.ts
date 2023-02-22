@@ -1,16 +1,13 @@
-/// <reference path="customer/customer.ts"/>
+import {
+  addCommodity,
+  createCommodity,
+  getShoppingCar
+} from "./customer/customer.js";
+import {Merchandise} from "./product/product.js";
 
-namespace App {
+const jason = getShoppingCar('Jason');
 
-  import getShoppingCar = App.getShoppingCar;
-  import createCommodity = App.createCommodity;
-  import Merchandise = App.Merchandise;
-  import addCommodity = App.addCommodity;
+const jeans = createCommodity(Merchandise.UNIQLO_JEANS, 79);
+addCommodity(jason, jeans);
 
-  const jason = getShoppingCar('Jason');
-
-  const jeans = createCommodity(Merchandise.UNIQLO_JEANS, 79);
-  addCommodity(jason, jeans);
-
-  console.log(jason);
-}
+console.log(jason);

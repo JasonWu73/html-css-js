@@ -1,30 +1,24 @@
-/// <reference path="../product/product.ts"/>
+import {Commodity, Merchandise} from "../product/product.js";
 
-namespace App {
+export interface Customer {
+  name: string,
+  shoppingCart: Commodity[]
+}
 
-  import Commodity = App.Commodity;
-  import Merchandise = App.Merchandise;
+export function getShoppingCar(name: string): Customer {
+  return {name, shoppingCart: []};
+}
 
-  export interface Customer {
-    name: string,
-    shoppingCart: Commodity[]
-  }
+export function addCommodity(
+  consumer: Customer,
+  commodity: Commodity
+) {
+  consumer.shoppingCart.push(commodity);
+}
 
-  export function getShoppingCar(name: string): Customer {
-    return {name, shoppingCart: []};
-  }
-
-  export function addCommodity(
-    consumer: Customer,
-    commodity: Commodity
-  ) {
-    consumer.shoppingCart.push(commodity);
-  }
-
-  export function createCommodity(
-    name: Merchandise,
-    price: number
-  ): Commodity {
-    return {name, price};
-  }
+export function createCommodity(
+  name: Merchandise,
+  price: number
+): Commodity {
+  return {name, price};
 }
