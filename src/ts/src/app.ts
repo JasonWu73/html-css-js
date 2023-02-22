@@ -1,4 +1,38 @@
+// generic utility types
+interface Account {
+  username: string,
+  password: string,
+  authorities: string[]
+}
+
+function createAccount(
+  username: string,
+  password: string,
+  authorities: string[]
+): Account {
+  // return {username, password, authorities};
+
+  const account: Partial<Account> = {};
+  account.username = username;
+  account.password = password;
+  account.authorities = authorities;
+  return account as Account;
+}
+
+console.log(createAccount(
+  'jason',
+  '111',
+  ['admin']
+));
+
+const users: Readonly<string[]> = ['Jason', 'Jack'];
+users.push('Bruce');
+users.pop();
+
+// ========================================
+
 // generic class
+/*
 class DataStorage<T extends string | number | boolean> {
   private data: T[] = [];
 
@@ -32,6 +66,7 @@ dataStorage.addItem('1');
 const items = dataStorage.getItems();
 console.log('typeof items[0]', typeof items[0]);
 console.log('typeof items[1]', typeof items[1]);
+*/
 
 /*
 const objectStorage = new DataStorage<object>();
