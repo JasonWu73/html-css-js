@@ -1,4 +1,18 @@
+// keyof constraint
+function extractAndDescribe<T extends object, U extends keyof T>(
+  obj: T,
+  key: U
+): string {
+  return `Value: ${obj[key]}`;
+}
+
+const result = extractAndDescribe({name: 'Jason'}, 'name');
+console.log(result);
+
+// ========================================
+
 // another generic function
+/*
 interface Lengthy {
   length: number
 }
@@ -23,6 +37,7 @@ function countAndDescribe<T extends Lengthy>(value: T): [T, string] {
 
 const [value, description] = countAndDescribe(['a', 'b']);
 console.log(description, ':',value);
+*/
 
 // ========================================
 
