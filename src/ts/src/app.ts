@@ -1,5 +1,5 @@
 interface Animal {
-  sex: string;
+  readonly sex: string;
 
   makeNoise(phrase: string): void
 }
@@ -21,6 +21,8 @@ cat = {
     console.log(phrase);
   }
 };
+
+cat.sex = 'female';
 
 cat = new Cat('female');
 cat.makeNoise('I am cat queen');
