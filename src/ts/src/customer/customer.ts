@@ -1,21 +1,21 @@
-/// <reference path="product.ts"/>
+/// <reference path="../product/product.ts"/>
 
-namespace Customer {
+namespace App {
 
-  import Commodity = Product.Commodity;
-  import Merchandise = Product.Merchandise;
+  import Commodity = App.Commodity;
+  import Merchandise = App.Merchandise;
 
-  export interface Consumer {
+  export interface Customer {
     name: string,
     shoppingCart: Commodity[]
   }
 
-  export function getShoppingCar(name: string): Consumer {
+  export function getShoppingCar(name: string): Customer {
     return {name, shoppingCart: []};
   }
 
   export function addCommodity(
-    consumer: Consumer,
+    consumer: Customer,
     commodity: Commodity
   ) {
     consumer.shoppingCart.push(commodity);

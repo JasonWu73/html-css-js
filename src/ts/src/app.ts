@@ -1,11 +1,11 @@
-/// <reference path="customer.ts"/>
+/// <reference path="customer/customer.ts"/>
 
 namespace App {
 
-  import getShoppingCar = Customer.getShoppingCar;
-  import createCommodity = Customer.createCommodity;
-  import Merchandise = Product.Merchandise;
-  import addCommodity = Customer.addCommodity;
+  import getShoppingCar = App.getShoppingCar;
+  import createCommodity = App.createCommodity;
+  import Merchandise = App.Merchandise;
+  import addCommodity = App.addCommodity;
 
   const jason = getShoppingCar('Jason');
 

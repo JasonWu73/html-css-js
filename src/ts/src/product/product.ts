@@ -1,4 +1,4 @@
-namespace Product {
+namespace App {
 
   export enum Merchandise {
     HAIR_CLAY = 'hairClay',
