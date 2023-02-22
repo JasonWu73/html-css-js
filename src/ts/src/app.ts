@@ -1,4 +1,33 @@
+// another generic function
+interface Lengthy {
+  length: number
+}
+
+function countAndDescribe<T extends Lengthy>(value: T): [T, string] {
+  const length = value.length;
+
+  if (length < 0) {
+    return [value, 'Got no elements.'];
+  }
+
+  if (length === 1) {
+    return [value, 'Got 1 elements.'];
+  }
+
+  if (length > 0) {
+    return [value, `Got ${length} elements.`];
+  }
+
+  return [value, 'Got no element.'];
+}
+
+const [value, description] = countAndDescribe(['a', 'b']);
+console.log(description, ':',value);
+
+// ========================================
+
 // generic constraints
+/*
 function merge<T extends object, U extends object>(
   objectOne: T,
   objectTwo: U
@@ -15,6 +44,7 @@ const merged = merge(
   25
 );
 console.log('merged:', merged);
+*/
 
 // ========================================
 
