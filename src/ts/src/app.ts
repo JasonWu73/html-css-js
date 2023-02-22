@@ -1,15 +1,27 @@
-type addFunction = (numberOne: number, numberTwo: number) => number;
+interface Animal {
+  sex?: string;
 
-let add: addFunction;
-
-// interface AddFunction {
-//   (numberOne: number, numberTwo: number): number;
-// }
-//
-// let add: AddFunction;
-
-add = (numberOne: number, numberTwo: number): number => {
-  return numberOne + numberTwo;
+  makeNoise?(): void;
 }
 
-console.log(add(1, 2));
+class Cat implements Animal {
+}
+
+const add = (numberOne: number, numberTwo?: number): number => {
+  if (numberTwo) {
+    return numberOne + numberTwo;
+  }
+
+  return numberOne;
+};
+
+console.log(add(1));
+
+const addDefaultSecondParameter = (
+  numberOne: number,
+  numberTwo: number = 0
+): number => {
+  return numberOne + numberTwo;
+};
+
+console.log(addDefaultSecondParameter(1));
