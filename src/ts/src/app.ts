@@ -1,4 +1,51 @@
+// generic class
+class DataStorage<T extends string | number | boolean> {
+  private data: T[] = [];
+
+  addItem(item: T): void {
+    this.data.push(item);
+  }
+
+  removeItem(item: T): void {
+    const itemIndexInData = this.data.indexOf(item);
+    if (itemIndexInData === -1) {
+      console.error(
+        `Can not found ${JSON.stringify(item)} \
+in ${JSON.stringify(this.data)}`
+      );
+      return;
+    }
+
+    this.data.splice(itemIndexInData, 1);
+  }
+
+  getItems(): T[] {
+    return [...this.data];
+  }
+}
+
+const dataStorage = new DataStorage<number | string>();
+
+dataStorage.addItem(1);
+dataStorage.addItem('1');
+
+const items = dataStorage.getItems();
+console.log('typeof items[0]', typeof items[0]);
+console.log('typeof items[1]', typeof items[1]);
+
+/*
+const objectStorage = new DataStorage<object>();
+
+objectStorage.addItem({name: 'Jason'});
+const bruce = {name: 'Bruce'};
+objectStorage.addItem(bruce);
+// objectStorage.removeItem({name: 'Bruce'});
+objectStorage.removeItem(bruce);
+console.log(objectStorage.getItems());
+*/
+
 // keyof constraint
+/*
 function extractAndDescribe<T extends object, U extends keyof T>(
   obj: T,
   key: U
@@ -8,6 +55,7 @@ function extractAndDescribe<T extends object, U extends keyof T>(
 
 const result = extractAndDescribe({name: 'Jason'}, 'name');
 console.log(result);
+*/
 
 // ========================================
 
