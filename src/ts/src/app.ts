@@ -1,34 +1,15 @@
-interface Animal {
-  readonly sex: string;
+type addFunction = (numberOne: number, numberTwo: number) => number;
 
-  makeNoise(phrase: string): void
+let add: addFunction;
+
+// interface AddFunction {
+//   (numberOne: number, numberTwo: number): number;
+// }
+//
+// let add: AddFunction;
+
+add = (numberOne: number, numberTwo: number): number => {
+  return numberOne + numberTwo;
 }
 
-interface Named {
-  readonly name: string;
-}
-
-interface Person extends Animal, Named {
-  phoneNumber: string;
-}
-
-class User implements Person {
-
-  constructor(
-    public name: string,
-    public sex: string,
-    public phoneNumber: string
-  ) {
-  }
-
-  makeNoise(phrase: string): void {
-    console.log(`I'm ${this.name} (${this.sex}): ${phrase}`);
-  }
-}
-
-const user = new User('Jason', 'male', '18157186682');
-user.makeNoise('Hello');
-console.log(user);
-
-user.name = 'Jack';
-console.log(user);
+console.log(add(1, 2));
