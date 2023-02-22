@@ -1,7 +1,17 @@
+// nullish coalescing
+// const data = undefined;
+// const data = null;
+const data = 0;
+const result = data ?? 'DEFAULT';
+// const result = data || 'DEFAULT';
+console.log(result);
+
+console.log((void 0) === undefined);
+
 // optional chaining
-fetch('https://jsonplaceholder.typicode.com/todos/1')
-  .then(response => response.json())
-  .then(json => console.log(json?.notExists?.id))
+// fetch('https://jsonplaceholder.typicode.com/todos/1')
+//   .then(response => response.json())
+//   .then(json => console.log(json?.notExists?.id))
 
 // function overloads
 // type Combinable = string | number;
