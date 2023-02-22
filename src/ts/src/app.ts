@@ -1,27 +1,29 @@
+// intersection type
+type numberOrString = number | string;
+type stringOrBoolean = string | boolean;
+type combined = numberOrString & stringOrBoolean;
+
+let variable: combined;
+
+variable = '';
+// variable = false; // error
+// variable = 100; // error
+
 interface Animal {
-  sex?: string;
-
-  makeNoise?(): void;
+  name: string;
 }
 
-class Cat implements Animal {
+interface People {
+  gender: string;
 }
 
-const add = (numberOne: number, numberTwo?: number): number => {
-  if (numberTwo) {
-    return numberOne + numberTwo;
-  }
+type AccountUser = Animal & People;
 
-  return numberOne;
+let user: AccountUser;
+
+user = {
+  name: 'Jason',
+  gender: 'male'
 };
 
-console.log(add(1));
-
-const addDefaultSecondParameter = (
-  numberOne: number,
-  numberTwo: number = 0
-): number => {
-  return numberOne + numberTwo;
-};
-
-console.log(addDefaultSecondParameter(1));
+console.log(user);
