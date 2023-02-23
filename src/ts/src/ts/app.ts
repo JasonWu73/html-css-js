@@ -1,11 +1,13 @@
 import '../css/style.css';
 
-function Logger(constructor: Function) {
-  console.log('Logging...')
-  console.log('constructor: ', constructor);
+function Logger(logMessage: string) {
+  return (constructor: Function) => {
+    console.log(logMessage);
+    console.log('constructor: ', constructor);
+  };
 }
 
-@Logger
+@Logger('LOGGING - PERSON')
 class Person {
   name = 'Jason';
 
