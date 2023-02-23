@@ -1,8 +1,24 @@
+import 'reflect-metadata';
+
 import '../css/style.css';
 
-import _ from 'lodash';
+import { plainToInstance } from "class-transformer";
+import { Post } from "./post.model";
+// import { plainPostMapper } from "./post.model";
 
-declare var DEFINED_GLOBAL: string;
+getPostsFromJsonPlaceHolder()
+  .then(posts => {
+    posts.forEach((post, index) =>
+      console.log(`${index + 1}. ${post.getTitleInformation()}`));
+  });
 
-console.log(_.shuffle([1, 2, 3]));
-console.log(DEFINED_GLOBAL);
+async function getPostsFromJsonPlaceHolder(): Promise<Post[]> {
+  const response = await fetch(
+    'https://jsonplaceholder.typicode.com/posts?userId=1'
+  );
+  const posts: Post[] = await response.json();
+
+  // return posts.map(post => plainPostMapper(post));
+
+  return plainToInstance(Post, posts);
+}
