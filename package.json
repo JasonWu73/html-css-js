@@ -4,9 +4,9 @@
   "description": "``` base/ components/ layout/ pages/ themes/ abstracts/ vendors/ ```",
   "main": "index.js",
   "scripts": {
-    "ts build watch": "tsc -b -w ./src/ts",
-    "webpack": "webpack",
-    "webpack dev server": "webpack-dev-server"
+    "tsc": "tsc --build --watch ./src/ts",
+    "build": "webpack",
+    "server": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,9 @@
   },
   "homepage": "https://github.com/JasonWu73/html-css-js#readme",
   "devDependencies": {
+    "css-loader": "^6.7.3",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.7.2",
     "ts-loader": "^9.4.2",
     "typescript": "^4.9.5",
     "webpack": "^5.75.0",
