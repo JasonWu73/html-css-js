@@ -1,14 +1,5 @@
 import '../css/style.css';
-import {
-  addCommodity,
-  createCommodity,
-  getShoppingCar
-} from "./customer/customer";
-import {Merchandise} from "./product/product";
 
-const jason = getShoppingCar('Jason');
+import _ from 'lodash';
 
-const jeans = createCommodity(Merchandise.UNIQLO_JEANS, 79);
-addCommodity(jason, jeans);
-
-console.log(jason);
+console.log(_.shuffle([1, 2, 3]));

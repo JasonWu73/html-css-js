@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/JasonWu73/html-css-js#readme",
   "devDependencies": {
+    "@types/lodash": "^4.14.191",
     "css-loader": "^6.7.3",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.7.2",
