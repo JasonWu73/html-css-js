@@ -2,6 +2,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // npm install --save-dev mini-css-extract-plugin
 // npm install --save-dev css-loader
+// JS 代码中：`import '../css/style.css';`
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
@@ -22,7 +23,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/ts/src/test-ts.html'
     }),
-    new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin({
+      filename: "[name].css" // 类似 `webpackOptions.output`
+    })
   ],
   module: {
     rules: [

@@ -15,7 +15,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/ts/src/test-ts.html'
     }),
-    new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin({
+      filename: "[name].[contenthash].css" // 文件名添加文件内容 Hash 值
+    })
   ],
   module: {
     rules: [
