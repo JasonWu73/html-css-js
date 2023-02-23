@@ -1,4 +1,4 @@
-import {Commodity, Merchandise} from "../product/product.js";
+import {Commodity, Merchandise} from "../product/product";
 
 export interface Customer {
   name: string,

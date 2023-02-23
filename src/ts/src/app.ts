@@ -2,8 +2,8 @@ import {
   addCommodity,
   createCommodity,
   getShoppingCar
-} from "./customer/customer.js";
-import {Merchandise} from "./product/product.js";
+} from "./customer/customer";
+import {Merchandise} from "./product/product";
 
 const jason = getShoppingCar('Jason');
 
