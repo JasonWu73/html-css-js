@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "tsc": "tsc --build --watch ./src/ts",
-    "build": "webpack",
-    "server": "webpack-dev-server"
+    "server": "webpack-dev-server",
+    "build": "webpack --config webpack.config.production.js"
   },
   "repository": {
     "type": "git",

@@ -1,22 +1,15 @@
-// npm install --save-dev html-webpack-plugin
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// npm install --save-dev mini-css-extract-plugin
-// npm install --save-dev css-loader
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
 module.exports = {
-  mode: 'development', // 打包生产环境代码则使用：`production`
+  mode: 'production', // 最大限度压缩代码
   entry: './src/ts/src/ts/app.ts',
-  devtool: 'inline-source-map', // `tsconfig.json`: `"sourceMap": true`
+  devtool: false,
   output: {
-    filename: 'bundle.js', // 生产环境中可添加文件内容 Hash 值: `[contenthash]`
-    path: path.resolve(__dirname, 'src/ts/dist'), // 必需为绝对路径
+    filename: 'bundle.[contenthash].js', // 文件名添加文件内容 Hash 值
+    path: path.resolve(__dirname, 'src/ts/dist'),
     clean: true
-  },
-  devServer: {
-    port: 3000,
-    open: true
   },
   plugins: [
     new HtmlWebpackPlugin({
