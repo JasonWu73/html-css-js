@@ -1,13 +1,64 @@
 import '../css/style.css';
 
-// property decorators
+// accessor and parameter decorator
+const AccessorOrMethodLog = (
+  target: any,
+  name: string | symbol,
+  descriptor: PropertyDescriptor
+) => {
+  console.log('Accessor or method decorator!');
+  console.log('target: ', target);
+  console.log('name: ', name);
+  console.log('descriptor', descriptor);
+};
 
+const ParameterLog = (
+  target: any,
+  name: string | symbol,
+  position: number
+) => {
+  console.log('Parameter decorator!');
+  console.log('target: ', target);
+  console.log('name: ', name);
+  console.log('position', position);
+};
+
+class Product {
+  title: string;
+  private _price: number;
+
+  @AccessorOrMethodLog
+  set price(price: number) {
+    if (price > 0) {
+      this._price = price;
+      return;
+    }
+
+    throw new Error('Invalid price - should be positive!');
+  }
+
+  constructor(title: string, @ParameterLog price: number) {
+    this.title = title;
+    this._price = price;
+  }
+
+  @AccessorOrMethodLog
+  getPriceWithTax(@ParameterLog tax: number): number {
+    return this._price * (1 + tax);
+  }
+}
+
+
+// ========================================
+
+// property decorators
+/*
 const Log = (
-  targetConstructor: any,
+  target: any,
   propertyName: string | symbol
 ): void => {
   console.log('Property decorator!')
-  console.log('targetConstructor: ', targetConstructor);
+  console.log('target: ', target);
   console.log('propertyName: ', propertyName);
 };
 
@@ -34,6 +85,7 @@ class Product {
     return this._price * (1 + tax);
   }
 }
+*/
 
 // ========================================
 
