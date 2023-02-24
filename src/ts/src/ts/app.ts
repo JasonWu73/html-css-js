@@ -1,6 +1,50 @@
 import '../css/style.css';
 
+// Class decorator can return new constructor function
+const WithTemplate = (template: string, hookId: string) => {
+  console.log('Class decorator!');
+  return function <T extends { new(...args: any[]): { title: string } }>(
+    originalConstructor: T
+  ) {
+    console.log('Original constructor!');
+    return class extends originalConstructor {
+      constructor(...args: any[]) {
+        super(...args);
+
+        console.log('Instantiated: ', this);
+
+        const element = document.getElementById(hookId);
+        if (!element) {
+          return;
+        }
+
+        element.innerHTML = template;
+
+        if (this.title) {
+          document.querySelector('h1')!.textContent = this.title;
+        }
+      }
+    };
+  };
+};
+
+@WithTemplate('<h1>Hello TypeScript!</h1>', 'app')
+class Product {
+  title: string;
+
+  constructor(title: string) {
+    console.log('Instantiate product!');
+    this.title = title;
+  }
+}
+
+const jeans = new Product('');
+console.log(jeans);
+
+// ========================================
+
 // When decorate execution
+/*
 const Log = (target: any, name: string | symbol): void => {
   console.log('Property decorator');
   console.log('target: ', target);
@@ -36,6 +80,7 @@ console.log(clay);
 
 const glasses = new Product('Glasses', 300);
 console.log(glasses);
+*/
 
 // ========================================
 
