@@ -1,6 +1,46 @@
 import '../css/style.css';
 
+// When decorate execution
+const Log = (target: any, name: string | symbol): void => {
+  console.log('Property decorator');
+  console.log('target: ', target);
+  console.log('name: ', name);
+};
+
+class Product {
+  @Log
+  title: string;
+  private _price: number;
+
+  set price(price: number) {
+    if (price > 0) {
+      this._price = price;
+      return;
+    }
+
+    throw new Error('Invalid price - should be positive!');
+  }
+
+  constructor(title: string, price: number) {
+    this.title = title;
+    this._price = price;
+  }
+
+  getPriceWithTax(tax: number): number {
+    return this._price * (1 + tax);
+  }
+}
+
+const clay = new Product('Clay', 75);
+console.log(clay);
+
+const glasses = new Product('Glasses', 300);
+console.log(glasses);
+
+// ========================================
+
 // accessor and parameter decorator
+/*
 const AccessorOrMethodLog = (
   target: any,
   name: string | symbol,
@@ -47,7 +87,7 @@ class Product {
     return this._price * (1 + tax);
   }
 }
-
+*/
 
 // ========================================
 
