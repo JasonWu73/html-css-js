@@ -1,8 +1,105 @@
 import '../css/style.css';
 
 // validation decorator
+interface ValidatorConfig {
+  [property: string]: {
+    [validatableProperty: string]: string[] // ['required', 'positive']
+  }
+}
+
+const registeredValidators: ValidatorConfig = {};
+
+function Required(targetPrototype: any, propertyName: string) {
+  const validatorName = 'required';
+  const storedTargetName = targetPrototype.constructor.name;
+  registerValidator(validatorName, storedTargetName, propertyName);
+}
+
+function Positive(targetPrototype: any, propertyName: string) {
+  const validatorName = 'positive';
+  const storedTargetName = targetPrototype.constructor.name;
+  registerValidator(validatorName, storedTargetName, propertyName);
+}
+
+function registerValidator(
+  validatorName: string,
+  storedTargetName: string,
+  propertyName: string
+) {
+  const storedValidator = registeredValidators[storedTargetName];
+  if (storedValidator) {
+    const constraints = storedValidator[propertyName];
+    if (!constraints) {
+      storedValidator[propertyName] = [ validatorName ];
+      return;
+    }
+    if (constraints && constraints.indexOf(validatorName) === -1) {
+      constraints.push(validatorName);
+    }
+    return;
+  }
+
+  registeredValidators[storedTargetName] = {
+    [propertyName]: [ validatorName ]
+  };
+}
+
+function validate(targetObject: { [index: string]: any }):
+  [
+    isPassed: boolean,
+    errors: { property: string, value: any, message: string }[]
+  ] {
+  console.log('validate...', registeredValidators);
+  const storedTargetName = targetObject.constructor.name;
+  const storedValidator = registeredValidators[storedTargetName];
+  if (!storedValidator) {
+    return [ true, [] ];
+  }
+
+  let isPassed = true;
+  const errors: { property: string, value: any, message: string }[] = [];
+  for (const key in targetObject) {
+    if (!storedValidator[key]) {
+      continue;
+    }
+
+    const constraints = storedValidator[key];
+    constraints.forEach(constraint => {
+      if (constraint === 'required') {
+        if (targetObject[key]) {
+          return;
+        }
+
+        isPassed = false;
+        errors.push({
+          property: key,
+          value: targetObject[key],
+          message: 'Must be required'
+        });
+      }
+
+      if (constraint === 'positive') {
+        if (targetObject[key] > 0) {
+          return;
+        }
+
+        isPassed = false;
+        errors.push({
+          property: key,
+          value: targetObject[key],
+          message: "Must be positive number"
+        });
+      }
+    });
+  }
+
+  return [ isPassed, errors ];
+}
+
 class Course {
+  @Required
   title: string;
+  @Positive
   price: number;
 
   constructor(title: string, price: number) {
@@ -26,7 +123,15 @@ courseForm.addEventListener('submit', event => {
   const tile = titleElement.value;
   const price = +priceElement.value;
 
+
   const createdCourse = new Course(tile, price);
+
+  const [ isPassed, errors ] = validate(createdCourse);
+  if (!isPassed) {
+    console.error(errors);
+    return;
+  }
+
   console.log('createdCourse: ', createdCourse);
 
   titleElement.value = '';
