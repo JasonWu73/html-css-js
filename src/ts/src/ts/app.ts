@@ -1,5 +1,40 @@
 import '../css/style.css';
 
+// validation decorator
+class Course {
+  title: string;
+  price: number;
+
+  constructor(title: string, price: number) {
+    this.title = title;
+    this.price = price;
+  }
+}
+
+const courseForm = document.querySelector('form') as HTMLFormElement;
+courseForm.addEventListener('submit', event => {
+  event.preventDefault();
+
+  const titleElement = document.querySelector(
+    'input[placeholder="Course Title"]'
+  ) as HTMLInputElement;
+
+  const priceElement = document.querySelector(
+    'input[placeholder="Course Price"]'
+  ) as HTMLInputElement;
+
+  const tile = titleElement.value;
+  const price = +priceElement.value;
+
+  const createdCourse = new Course(tile, price);
+  console.log('createdCourse: ', createdCourse);
+
+  titleElement.value = '';
+  priceElement.value = '';
+});
+
+// ========================================
+
 // access and method decorator return descriptor object
 /**
  * 自动绑定 this 关键字,
@@ -9,6 +44,7 @@ import '../css/style.css';
  * @param methodName 方法名
  * @param descriptor 属性描述符
  */
+/*
 function AutoBind(
   target: any,
   methodName: string,
@@ -41,6 +77,9 @@ class User {
 const buttonElement = document.querySelector('button')!;
 const user = new User('Jason');
 buttonElement.addEventListener('click', user.printUsername);
+*/
+
+// ========================================
 
 // Class decorator can return new constructor function
 /*
