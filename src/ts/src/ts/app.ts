@@ -1,6 +1,49 @@
 import '../css/style.css';
 
+// access and method decorator return descriptor object
+/**
+ * 自动绑定 this 关键字,
+ * 从而可在 addEventListener(event, object.method) 中直接使用.
+ *
+ * @param target 目标原型链对象
+ * @param methodName 方法名
+ * @param descriptor 属性描述符
+ */
+function AutoBind(
+  target: any,
+  methodName: string,
+  descriptor: PropertyDescriptor
+) {
+  const originalMethod = descriptor.value;
+  const adjustedDescriptor: PropertyDescriptor = {
+    configurable: true,
+    enumerable: false,
+    get() {
+      return originalMethod.bind(this);
+    }
+  };
+  return adjustedDescriptor;
+}
+
+class User {
+  private readonly _username: string;
+
+  constructor(username: string) {
+    this._username = username;
+  }
+
+  @AutoBind
+  printUsername() {
+    console.log(this._username);
+  }
+}
+
+const buttonElement = document.querySelector('button')!;
+const user = new User('Jason');
+buttonElement.addEventListener('click', user.printUsername);
+
 // Class decorator can return new constructor function
+/*
 const WithTemplate = (template: string, hookId: string) => {
   console.log('Class decorator!');
   return function <T extends { new(...args: any[]): { title: string } }>(
@@ -40,6 +83,7 @@ class Product {
 
 const jeans = new Product('');
 console.log(jeans);
+*/
 
 // ========================================
 
