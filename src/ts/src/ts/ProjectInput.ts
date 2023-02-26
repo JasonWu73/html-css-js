@@ -1,22 +1,49 @@
 class ProjectInput {
   templateElement: HTMLTemplateElement;
   hostElement: HTMLDivElement;
+  element: HTMLFormElement;
+  titleElement: HTMLInputElement;
+  descriptionElement: HTMLTextAreaElement;
+  peopleElement: HTMLInputElement;
 
   constructor() {
     this.templateElement =
       document.getElementById('project-input')! as HTMLTemplateElement;
     this.hostElement =
-    document.getElementById('app')! as HTMLDivElement;
+      document.getElementById('app')! as HTMLDivElement;
 
+    const importedNode = document.importNode(this.templateElement.content, true);
+    this.element = importedNode.firstElementChild as HTMLFormElement;
+
+    this.titleElement = this.element.querySelector('#title') as
+      HTMLInputElement;
+    this.descriptionElement = this.element.querySelector('#description') as
+      HTMLTextAreaElement;
+    this.peopleElement = this.element.querySelector('#people') as
+      HTMLInputElement;
+
+    this.configure();
     this.attachElement();
   }
 
+  private submitHandler(event: SubmitEvent) {
+    event.preventDefault();
+
+    const title = this.titleElement.value.trim();
+    const description = this.descriptionElement.value.trim();
+    const people = +this.peopleElement.value;
+
+    const formData = { title, description, people };
+
+    console.log(formData);
+  }
+
+  private configure() {
+    this.element.addEventListener('submit', this.submitHandler.bind(this));
+  }
+
   private attachElement() {
-    const importedNode = document.importNode(this.templateElement.content, true);
-    this.hostElement.insertAdjacentElement(
-      'afterbegin',
-      importedNode.firstElementChild!
-    );
+    this.hostElement.insertAdjacentElement('afterbegin', this.element);
   }
 }
 
