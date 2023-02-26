@@ -1,3 +1,5 @@
+import { AutoBind } from "./decorators";
+
 class ProjectInput {
   templateElement: HTMLTemplateElement;
   hostElement: HTMLDivElement;
@@ -26,6 +28,7 @@ class ProjectInput {
     this.attachElement();
   }
 
+  @AutoBind
   private submitHandler(event: SubmitEvent) {
     event.preventDefault();
 
@@ -39,7 +42,7 @@ class ProjectInput {
   }
 
   private configure() {
-    this.element.addEventListener('submit', this.submitHandler.bind(this));
+    this.element.addEventListener('submit', this.submitHandler);
   }
 
   private attachElement() {
