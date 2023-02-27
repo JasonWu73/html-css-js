@@ -28,17 +28,40 @@ class ProjectInput {
     this.attachElement();
   }
 
-  @AutoBind
-  private submitHandler(event: SubmitEvent) {
-    event.preventDefault();
-
+  private gatherUserInput():
+    [ title: string, description: string, people: number ] | void {
     const title = this.titleElement.value.trim();
     const description = this.descriptionElement.value.trim();
     const people = +this.peopleElement.value;
 
-    const formData = { title, description, people };
+    if (title.length === 0 ||
+      description.length === 0 ||
+      isNaN(people) || people <= 0) {
+      alert('Invalid input, please try again!');
+      return;
+    }
 
-    console.log(formData);
+    return [ title, description, people ];
+  }
+
+  private clearUserInput() {
+    this.titleElement.value = '';
+    this.descriptionElement.value = '';
+    this.peopleElement.value = '';
+  }
+
+  @AutoBind
+  private submitHandler(event: SubmitEvent) {
+    event.preventDefault();
+
+    const userInput = this.gatherUserInput();
+    if (!userInput) {
+      return;
+    }
+
+    const [ title, description, people ] = userInput;
+    console.log(title, description, people);
+    this.clearUserInput();
   }
 
   private configure() {
