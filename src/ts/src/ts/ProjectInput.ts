@@ -1,4 +1,5 @@
 import { AutoBind } from "./decorators";
+import { validate } from "./validator";
 
 class ProjectInput {
   templateElement: HTMLTemplateElement;
@@ -34,9 +35,11 @@ class ProjectInput {
     const description = this.descriptionElement.value.trim();
     const people = +this.peopleElement.value;
 
-    if (title.length === 0 ||
-      description.length === 0 ||
-      isNaN(people) || people <= 0) {
+    if (
+      !validate({ value: title, required: true }) ||
+      !validate({ value: description, required: true, minLength: 5 }) ||
+      !validate({ value: people, required: true, min: 1 })
+    ) {
       alert('Invalid input, please try again!');
       return;
     }
