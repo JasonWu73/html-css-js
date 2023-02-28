@@ -70,3 +70,34 @@ body {
 .btn--purple:hover {
   background-color: #9f039f;
 }
+
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 60rem;
+  margin: 3rem auto;
+  border: 0.1rem solid #ccc;
+  border-radius: 1rem;
+  box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.2);
+}
+
+#active-projects h2,
+#finished-projects h2 {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  text-align: center;
+  background-color: purple;
+  color: white;
+}
+
+#finished-projects h2 {
+  text-align: center;
+  background-color: green;
+  color: white;
+}
+
+.projects ul {
+  padding: 1rem;
+  list-style: none;
+}
