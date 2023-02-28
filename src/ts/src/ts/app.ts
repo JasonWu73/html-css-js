@@ -1,5 +1,7 @@
 import '../css/style.css';
 
 import ProjectInput from "./ProjectInput";
+import ProjectList from "./ProjectList";
 
-const projectInput = new ProjectInput();
+new ProjectInput();
+new ProjectList();
