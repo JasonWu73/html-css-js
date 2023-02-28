@@ -4,4 +4,5 @@ import ProjectInput from "./ProjectInput";
 import ProjectList from "./ProjectList";
 
 new ProjectInput();
-new ProjectList();
+new ProjectList('active');
+new ProjectList('finished');
