@@ -1,7 +1,7 @@
 class ProjectList {
   templateElement: HTMLTemplateElement;
   hostElement: HTMLDivElement;
-  element: HTMLDivElement;
+  element: HTMLElement;
 
   constructor() {
     this.templateElement = document.getElementById('project-list')! as
@@ -10,7 +10,7 @@ class ProjectList {
       HTMLDivElement;
 
     const importedNode = document.importNode(this.templateElement.content, true);
-    this.element = importedNode.firstElementChild as HTMLDivElement;
+    this.element = importedNode.firstElementChild as HTMLElement;
 
     this.attachElement();
   }
