@@ -100,4 +100,14 @@ body {
 .projects ul {
   padding: 1rem;
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.projects ul li {
+  border: 0.1rem solid #ccc;
+  padding: 1rem;
+  border-radius: 0.4rem;
+  box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.2);
 }
