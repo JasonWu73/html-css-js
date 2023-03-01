@@ -1,5 +1,6 @@
 import { AutoBind } from "./decorators";
 import { validate } from "./validator";
+import ProjectState from "./ProjectState";
 
 class ProjectInput {
   templateElement: HTMLTemplateElement;
@@ -63,7 +64,8 @@ class ProjectInput {
     }
 
     const [ title, description, people ] = userInput;
-    console.log(title, description, people);
+    ProjectState.getInstance().addProject(title, description, people);
+
     this.clearUserInput();
   }
 
