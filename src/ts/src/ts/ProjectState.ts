@@ -1,6 +1,35 @@
+export enum ProjectStatus {
+  Active = 'active',
+  Finished = 'finished'
+}
+
+export class Project {
+  public id: string;
+  public title: string;
+  public description: string;
+  public people: number;
+  public status: ProjectStatus;
+
+  constructor(
+    id: string,
+    title: string,
+    description: string,
+    people: number,
+    status: ProjectStatus
+  ) {
+    this.id = id;
+    this.title = title;
+    this.description = description;
+    this.people = people;
+    this.status = status;
+  }
+}
+
+type Listener = (items: Project[]) => void;
+
 class ProjectState {
-  private listeners: Function[] = [];
-  private projects: any[] = [];
+  private listeners: Listener[] = [];
+  private projects: Project[] = [];
   private static instance: ProjectState
 
   private constructor() {
@@ -15,18 +44,19 @@ class ProjectState {
     return this.instance;
   }
 
-  addListener(listenerFn: Function) {
+  addListener(listenerFn: Listener) {
     this.listeners.push(listenerFn);
   }
 
   addProject(title: string, description: string, people: number) {
     // 添加数据
-    const newProject = {
-      id: Math.random().toString(),
+    const newProject = new Project(
+      Math.random().toString(),
       title,
       description,
-      people
-    };
+      people,
+      ProjectStatus.Active
+    );
     this.projects.push(newProject);
 
     // 触发监听事件

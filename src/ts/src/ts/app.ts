@@ -2,7 +2,8 @@ import '../css/style.css';
 
 import ProjectInput from "./ProjectInput";
 import ProjectList from "./ProjectList";
+import { ProjectStatus } from "./ProjectState";
 
 new ProjectInput();
-new ProjectList('active');
-new ProjectList('finished');
+new ProjectList(ProjectStatus.Active);
+new ProjectList(ProjectStatus.Finished);
