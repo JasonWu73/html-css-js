@@ -1,23 +1,13 @@
 import ProjectState, { Project, ProjectStatus } from "./ProjectState";
+import Component from "./Component";
 
-class ProjectList {
-  templateElement: HTMLTemplateElement;
-  hostElement: HTMLDivElement;
-  element: HTMLElement;
+class ProjectList extends Component<HTMLDivElement, HTMLElement>{
   type: ProjectStatus;
   projects: Project[] = [];
 
   constructor(type: ProjectStatus) {
+    super('project-list', 'app', false, `${type}-projects`);
     this.type = type;
-
-    this.templateElement = document.getElementById('project-list')! as
-      HTMLTemplateElement;
-    this.hostElement = document.getElementById('app')! as
-      HTMLDivElement;
-
-    const importedNode = document.importNode(this.templateElement.content, true);
-    this.element = importedNode.firstElementChild as HTMLElement;
-    this.element.id = `${this.type}-projects`;
 
     ProjectState.getInstance().addListener((projects: Project[]) => {
       this.projects = projects.filter(p => {
@@ -30,7 +20,6 @@ class ProjectList {
       this.renderProjects();
     });
 
-    this.attachElement();
     this.renderContent();
   }
 
@@ -45,14 +34,13 @@ class ProjectList {
     }
   }
 
-  private renderContent() {
+  renderContent() {
     this.element.querySelector('ul')!.id = `${this.type}-projects-list`;
     this.element.querySelector('h2')!.textContent =
       `${this.type.toUpperCase()} PROJECTS`;
   }
 
-  private attachElement() {
-    this.hostElement.insertAdjacentElement('beforeend', this.element);
+  configure() {
   }
 }
 
