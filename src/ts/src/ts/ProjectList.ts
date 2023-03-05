@@ -1,15 +1,13 @@
-import ProjectState, { Project } from "./ProjectState";
-
-type ListType = 'active' | 'finished';
+import ProjectState, { Project, ProjectStatus } from "./ProjectState";
 
 class ProjectList {
   templateElement: HTMLTemplateElement;
   hostElement: HTMLDivElement;
   element: HTMLElement;
-  type: ListType;
+  type: ProjectStatus;
   projects: Project[] = [];
 
-  constructor(type: ListType) {
+  constructor(type: ProjectStatus) {
     this.type = type;
 
     this.templateElement = document.getElementById('project-list')! as
@@ -22,7 +20,13 @@ class ProjectList {
     this.element.id = `${this.type}-projects`;
 
     ProjectState.getInstance().addListener((projects: Project[]) => {
-      this.projects = projects;
+      this.projects = projects.filter(p => {
+        if (this.type === ProjectStatus.Active) {
+          return p.status === ProjectStatus.Active;
+        }
+
+        return p.status === ProjectStatus.Finished;
+      });
       this.renderProjects();
     });
 
@@ -33,6 +37,7 @@ class ProjectList {
   private renderProjects() {
     const listId = `${this.type}-projects-list`;
     const listEl = document.getElementById(listId)!;
+    listEl.innerHTML = '';
     for (const item of this.projects) {
       const listItem = document.createElement('li');
       listItem.textContent = item.title;
