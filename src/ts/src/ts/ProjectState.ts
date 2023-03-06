@@ -28,7 +28,7 @@ export class Project {
 type Listener<T> = (items: T[]) => void;
 
 class State<T> {
-  listeners: Listener<T>[];
+  protected listeners: Listener<T>[];
 
   protected constructor() {
     this.listeners = [];
