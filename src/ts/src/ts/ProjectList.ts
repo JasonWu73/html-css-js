@@ -1,5 +1,6 @@
 import ProjectState, { Project, ProjectStatus } from "./ProjectState";
 import Component from "./Component";
+import ProjectItem from "./ProjectItem";
 
 class ProjectList extends Component<HTMLDivElement, HTMLElement>{
   type: ProjectStatus;
@@ -28,9 +29,7 @@ class ProjectList extends Component<HTMLDivElement, HTMLElement>{
     const listEl = document.getElementById(listId)!;
     listEl.innerHTML = '';
     for (const item of this.projects) {
-      const listItem = document.createElement('li');
-      listItem.textContent = item.title;
-      listEl.appendChild(listItem);
+      new ProjectItem(listId, item);
     }
   }
 
