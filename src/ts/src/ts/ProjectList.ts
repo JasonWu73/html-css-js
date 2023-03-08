@@ -1,8 +1,12 @@
 import ProjectState, { Project, ProjectStatus } from "./ProjectState";
 import Component from "./Component";
 import ProjectItem from "./ProjectItem";
+import { DragTarget } from "./drag-drop";
+import { AutoBind } from "./decorators";
 
-class ProjectList extends Component<HTMLDivElement, HTMLElement>{
+class ProjectList
+  extends Component<HTMLDivElement, HTMLElement>
+  implements DragTarget {
   type: ProjectStatus;
   projects: Project[] = [];
 
@@ -10,17 +14,7 @@ class ProjectList extends Component<HTMLDivElement, HTMLElement>{
     super('project-list', 'app', false, `${type}-projects`);
     this.type = type;
 
-    ProjectState.getInstance().addListener((projects: Project[]) => {
-      this.projects = projects.filter(p => {
-        if (this.type === ProjectStatus.Active) {
-          return p.status === ProjectStatus.Active;
-        }
-
-        return p.status === ProjectStatus.Finished;
-      });
-      this.renderProjects();
-    });
-
+    this.configure();
     this.renderContent();
   }
 
@@ -40,6 +34,37 @@ class ProjectList extends Component<HTMLDivElement, HTMLElement>{
   }
 
   configure() {
+    this.element.addEventListener('dragover', this.dragOverHandler);
+    this.element.addEventListener('drop', this.dropHandler);
+    this.element.addEventListener('dragleave', this.dragLeaveHandler);
+
+    ProjectState.getInstance().addListener((projects: Project[]) => {
+      this.projects = projects.filter(p => {
+        if (this.type === ProjectStatus.Active) {
+          return p.status === ProjectStatus.Active;
+        }
+
+        return p.status === ProjectStatus.Finished;
+      });
+      this.renderProjects();
+    });
+  }
+
+  @AutoBind
+  dragOverHandler(event: DragEvent): void {
+    const ulEl = this.element.querySelector('ul')!;
+    ulEl.classList.add('droppable');
+  }
+
+  @AutoBind
+  dropHandler(event: DragEvent): void {
+    console.log('drop');
+  }
+
+  @AutoBind
+  dragLeaveHandler(event: DragEvent): void {
+    const ulEl = this.element.querySelector('ul')!;
+    ulEl.classList.remove('droppable');
   }
 }
 

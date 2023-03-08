@@ -112,3 +112,11 @@ body {
   box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.2);
   background-color: white;
 }
+
+.droppable {
+  background-color: #d0c3ec;
+}
+
+#finished-projects .droppable {
+  background-color: #bbf6bb;
+}
