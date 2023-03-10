@@ -64,6 +64,20 @@ class ProjectState extends State<Project> {
     this.projects.push(newProject);
 
     // 触发监听事件
+    this.updateListeners();
+  }
+
+  moveProject(id: string, newStatus: ProjectStatus): void {
+    const project = this.projects.find(p => p.id === id);
+    if (!project) return;
+
+    if (project.status === newStatus) return;
+
+    project.status = newStatus;
+    this.updateListeners();
+  }
+
+  private updateListeners() {
     for (const listener of this.listeners) {
       listener(this.projects.slice()); // 返回拷贝的值
     }

@@ -62,7 +62,7 @@ class ProjectList
   @AutoBind
   dropHandler(event: DragEvent): void {
     const projectId = event.dataTransfer!.getData("text/plain");
-    console.log(projectId);
+    ProjectState.getInstance().moveProject(projectId, this.type);
   }
 
   @AutoBind
