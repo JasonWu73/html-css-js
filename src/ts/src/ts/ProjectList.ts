@@ -52,13 +52,17 @@ class ProjectList
 
   @AutoBind
   dragOverHandler(event: DragEvent): void {
-    const ulEl = this.element.querySelector('ul')!;
-    ulEl.classList.add('droppable');
+    if (event.dataTransfer && event.dataTransfer.types[0] === 'text/plain') {
+      event.preventDefault();
+      const ulEl = this.element.querySelector('ul')!;
+      ulEl.classList.add('droppable');
+    }
   }
 
   @AutoBind
   dropHandler(event: DragEvent): void {
-    console.log('drop');
+    const projectId = event.dataTransfer!.getData("text/plain");
+    console.log(projectId);
   }
 
   @AutoBind
