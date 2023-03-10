@@ -3,8 +3,8 @@ class Form {
   private addressIn: HTMLInputElement;
 
   constructor() {
-    this.form = document.querySelector('form') as HTMLFormElement;
-    this.addressIn = document.querySelector('#address') as HTMLInputElement;
+    this.form = document.querySelector('form')! as HTMLFormElement;
+    this.addressIn = document.querySelector('#address')! as HTMLInputElement;
     this.configure();
   }
 
@@ -12,10 +12,14 @@ class Form {
     this.form.addEventListener('submit', this.submitHandler.bind(this));
   }
 
-  private submitHandler(event: SubmitEvent) {
+  private submitHandler(event: SubmitEvent): void {
     event.preventDefault();
     const address = this.addressIn.value;
-    console.log('submit form: ', address);
+    this.sendGeocodingApi(address);
+  }
+
+  private sendGeocodingApi(address: string): void {
+    console.log(address);
   }
 }
 
