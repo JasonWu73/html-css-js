@@ -1,3 +1,13 @@
+import Api from "./Api";
+import axios from "axios";
+
+type Post = {
+  userId: number,
+  id: number,
+  title: string,
+  body: string
+};
+
 class Form {
   private form: HTMLFormElement;
   private addressIn: HTMLInputElement;
@@ -15,11 +25,12 @@ class Form {
   private submitHandler(event: SubmitEvent): void {
     event.preventDefault();
     const address = this.addressIn.value;
-    this.sendGeocodingApi(address);
+    this.sendApi(address);
   }
 
-  private sendGeocodingApi(address: string): void {
-    console.log(address);
+  private async sendApi(address: string): Promise<void> {
+    const response = await axios.get<Post>(`${Api.GET_POSTS}/${encodeURI(address)}`);
+    console.log(response.data.title);
   }
 }
 
