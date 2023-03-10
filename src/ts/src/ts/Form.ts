@@ -1,5 +1,5 @@
-import Api from "./Api";
-import axios from "axios";
+import Api from './Api';
+import axios from 'axios';
 
 type Post = {
   userId: number,
